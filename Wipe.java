@@ -13,6 +13,8 @@
  Usage: java Wipe [fileOrDir1] [fileOrDir2] ... [fileOrDirN]
  
 */
+
+import io.FilePlus;
  
 public class Wipe
 {
@@ -49,7 +51,7 @@ public class Wipe
          FilePlus fp = new FilePlus(fileOrDir);
          if(!fp.canAccess()) 
          {
-            printError(fileOrDir, "cannot access");
+            printError(fileOrDir, "path not accessible");
          }
          else if(!fp.exists())
          {

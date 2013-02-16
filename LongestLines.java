@@ -1,15 +1,17 @@
 /*
  
- Author: Angela Lau 
- Date  : 02/13/13
+ Author      : Angela Lau 
+ Course      : CS 111B
+ Instructor  : Abbas Moghtanei
+ Date        : 02/13/13
  Program Name: LongestLines.java
- Objective: This program takes a file and displays all
-            lines with more than 66 characters. The line
-            number of each line is displayed in square
-            brackets. 
+ Objective   : This program takes a file and displays all
+               lines with more than 66 characters. The line
+               number of each line is displayed in square
+               brackets. 
 */
- 
-import java.util.*;
+
+import java.util.Scanner;
 import java.io.*;
  
 public class LongestLines
