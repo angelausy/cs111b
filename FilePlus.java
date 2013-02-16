@@ -15,7 +15,6 @@ import java.io.*;
  
 public class FilePlus extends File
 {
-   private String absolutePath = super.getAbsolutePath();
 
 //*******************************FilePlus()*******************************
    public FilePlus(String pathname) 
@@ -35,6 +34,7 @@ public class FilePlus extends File
 
    public String getParent()
    {
+      String absolutePath = super.getAbsolutePath();
       File f = new File(absolutePath);
       return(f.getParent());
    }
