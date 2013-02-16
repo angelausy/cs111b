@@ -9,7 +9,8 @@
                directories specified from the command line.
                A message will be displayed whether or not the 
                action is successful.
- Usage       : java Wipe [fileOrDir1] [fileOrDir2] ... [fileOrDirN]
+               
+ Usage: java Wipe [fileOrDir1] [fileOrDir2] ... [fileOrDirN]
  
 */
  
@@ -63,7 +64,7 @@ public class Wipe
             }
             else if(fp.isDirectory() && !fp.isEmpty()) 
             {
-               printError(fileOrDir, "non-empty directory");              
+               printError(fileOrDir, "non-empty directory");
             }
             else
             {

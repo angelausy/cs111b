@@ -5,8 +5,8 @@
  Instructor  : Abbas Moghtanei
  Date        : 02/12/13
  Program Name: Strip.java
- Objective   : This program will remove either all whitespace from a
-               string if there is only one argument or all 
+ Objective   : This program will remove either all whitespace 
+               from a string if there is only one argument or all
                occurrences of the second string argument from the
                first (and any extraneous whitespace).
 
@@ -15,6 +15,7 @@
 public class Strip
 {
    
+//********************************strip()*********************************
    public static String strip(String ... s)
    {
       int argLen = s.length;
