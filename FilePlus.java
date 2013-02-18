@@ -58,6 +58,7 @@ public class FilePlus extends File
    {
       return(super.exists() &&
              super.isDirectory() &&
+             super.canRead() &&
 	          (super.list()).length == 0);
    }
 }
