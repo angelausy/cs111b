@@ -14,18 +14,24 @@ import java.applet.*;
  
 public class Lines extends Applet
 {
-    int counter, delay, screenWidth, screenHeight;
+    final int ITERATIONS = 500;
+    final int DELAY = 150;
+    int counter, screenWidth, screenHeight;
+    Color bgColor, fgColor;
 
     public void init()
     {
         counter = 0;
-	delay = 265;
+
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-	screenWidth = d.width;
-	screenHeight = d.height;
 	setSize(d);
+	screenWidth = (int) d.getWidth();
+	screenHeight = (int) d.getHeight();
+
         setBackground(Color.black);
 	setForeground(Color.green);
+        bgColor = getBackground();
+        fgColor = getForeground();
     }
 
     public void update(Graphics g)
@@ -36,9 +42,9 @@ public class Lines extends Applet
     public void cls()
     {
         Graphics g = getGraphics();
-        g.setColor(getBackground());
+        g.setColor(bgColor);
 	g.fillRect(0,0,screenWidth,screenHeight); 
-	g.setColor(getForeground());
+	g.setColor(fgColor);
     }
 
     public void sleep(int msec)
@@ -47,7 +53,9 @@ public class Lines extends Applet
        {
           Thread.sleep(msec);
        } 
-       catch(InterruptedException e) {}
+       catch(InterruptedException e) 
+       {
+       }
     }
 
     public static int rand(int a, int b)
@@ -70,21 +78,27 @@ public class Lines extends Applet
         return(rand(0,screenHeight));
     }
 
+    public void drawRandomLine(Graphics g)
+    {
+	g.drawLine(randomX(), randomY(), randomX(), randomY());
+    }
+
     public void paint(Graphics g)
     {
         g.setColor(randomColor());
-	g.drawLine(randomX(), randomY(), randomX(), randomY());
+        drawRandomLine(g);
 	counter++;
-	if(counter < 500) 
+	if(counter < ITERATIONS) 
 	{
-	    sleep(delay);
+	    sleep(DELAY);
 	    repaint();
 	}
 	else
 	{
 	    counter = 0;
+            sleep(DELAY);
 	    cls();
-	    sleep(delay);
+            sleep(DELAY);
 	    repaint();
 	}
     }
