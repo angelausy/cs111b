@@ -3,8 +3,8 @@
  Author      : Angela Lau
  Date        : 02/26/13
  Program Name: Lines.java
- Objective   : This applet displays 500 random lines,
-               clears the screen, and then displays 500 new
+ Objective   : This applet displays 100 random lines,
+               clears the screen, and then displays 100 new
                random lines, in an infinite loop.
  
 */
@@ -14,11 +14,12 @@ import java.applet.*;
  
 public class Lines extends Applet
 {
-    final int ITERATIONS = 500;
-    final int DELAY = 150;
+    final int ITERATIONS = 100;
+    final int DELAY = 200;
     int counter, screenWidth, screenHeight;
     Color bgColor, fgColor;
 
+//*********************************init()*********************************
     public void init()
     {
         counter = 0;
@@ -34,11 +35,16 @@ public class Lines extends Applet
         fgColor = getForeground();
     }
 
+//********************************update()********************************
+//  override update to avoid clearing the screen everytime repaint()
+//  is called
     public void update(Graphics g)
     {
         paint(g);
     }
 
+//*********************************cls()**********************************
+//  clear screen
     public void cls()
     {
         Graphics g = getGraphics();
@@ -47,6 +53,9 @@ public class Lines extends Applet
 	g.setColor(fgColor);
     }
 
+//********************************sleep()*********************************
+//  used in combination with repaint() as solution to timer problem
+//  of repaint(long)
     public void sleep(int msec)
     {
        try
@@ -58,48 +67,52 @@ public class Lines extends Applet
        }
     }
 
+//*********************************rand()*********************************
     public static int rand(int a, int b)
     {
        return((int)((b-a+1)*Math.random())+a); 
     }
 
+//*****************************randomColor()******************************
     public Color randomColor()
     {
        return(new Color(rand(0,255),rand(0,255),rand(0,255)));
     }
     
+//*******************************randomX()********************************
     public int randomX()
     {
         return(rand(0,screenWidth));
     }
 
+//*******************************randomY()********************************
     public int randomY()
     {
         return(rand(0,screenHeight));
     }
 
+//****************************drawRandomLine()****************************
     public void drawRandomLine(Graphics g)
     {
 	g.drawLine(randomX(), randomY(), randomX(), randomY());
     }
 
+//********************************paint()*********************************
     public void paint(Graphics g)
     {
-        g.setColor(randomColor());
-        drawRandomLine(g);
-	counter++;
-	if(counter < ITERATIONS) 
-	{
-	    sleep(DELAY);
-	    repaint();
-	}
-	else
-	{
-	    counter = 0;
+        if(counter == ITERATIONS)
+        {
+            counter = 0;
             sleep(DELAY);
-	    cls();
-            sleep(DELAY);
-	    repaint();
-	}
+            cls();
+        }
+        else 
+        {
+            g.setColor(randomColor());
+            drawRandomLine(g);
+	    counter++;
+        }
+	sleep(DELAY);
+	repaint();
     }
 }
