@@ -28,7 +28,7 @@ public class CircleInABox extends Applet implements ActionListener
    final int MaxX = Width - 5;
    final int MinDiam = 10;
    final int DeltaXY = 15;
-   final int DeltaDiam = 15;
+   final int DeltaDiam = 14;
 
    int x0, y0, x1, y1, diameter;
    int newX0, newY0, newX1, newY1, newDiam;
@@ -94,14 +94,15 @@ public class CircleInABox extends Applet implements ActionListener
          newY1 = y1 + delta;
          newX0 = x0; newX1 = x1; newDiam = diameter;
       }
-      // change the diameter from fixed point (x0, y0)
+      // inflate or deflate circle from the center
       else
       {
          delta = (action == inflate)? DeltaDiam : -DeltaDiam;
          newDiam = diameter + delta;
-         newX1 = x0 + newDiam;
-         newY1 = y0 + newDiam;
-         newX0 = x0; newY0 = y0;
+         newX0 = x0 - (delta/2);
+         newY0 = y0 - (delta/2);
+         newX1 = newX0 + newDiam;
+         newY1 = newY0 + newDiam;
       }
 
       // if true, circle remains inside boundary
